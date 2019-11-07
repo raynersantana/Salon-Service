@@ -1,1 +1,1 @@
-# Salon-Serivce
+# Salon-Service
