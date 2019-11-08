@@ -5,9 +5,21 @@ const bodyParser = require('body-parser');
 const firebase = require('firebase');
 const Auth = require('./firebase.js');
 const ejs = require('ejs');
-
+var goToRegister;
 let userLogged;
+
+var verifyLogin = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+        if(user){
+            userLogged = user
+        } else {
+            userLogged = null
+        }
+    });
+}
+
 const app = express()
+app.set('view engine', 'ejs');
 var publicDir = require('path').join(__dirname,'/public');
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,18 +29,15 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); /
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use('/style', express.static(__dirname + '/style/')); // redirect CSS bootstrap
-app.set('view engine', 'ejs');
-
-firebase.auth().onAuthStateChanged((user) => {
-    if(user){
-        userLogged = user
-    } else {
-        userLogged = null
-    }
-})
+app.use('/css', express.static(__dirname + '/vendor/css'));
 
 app.get('/', (req, res) => {
-    res.render('index');
+    verifyLogin();
+    if(userLogged){
+        res.redirect('/dashboard');
+    }else{
+        res.render('index');
+    }
 })
 
 app.post('/createuser', (req, res) => {
@@ -42,15 +51,20 @@ app.post('/createuser', (req, res) => {
   })
 
 app.post('/login', (req, res) => {
-    let getBody = req.body;
-    Auth.SignInWithEmailAndPassword(getBody.email, getBody.password)
-    .then((login) => {
-        if(!login.err){
-            res.redirect('/dashboard')
-        }else{
-            res.redirect('/')
-        }
-    })
+    if(goToRegister){
+        res.redirect('/register')
+        goToRegister = false;
+    }else{
+        let getBody = req.body;
+        Auth.SignInWithEmailAndPassword(getBody.email, getBody.password)
+        .then((login) => {
+            if(!login.err){
+                res.redirect('/dashboard')
+            }else{
+                res.redirect('/')
+            }
+        })
+    }
 })
 
 app.post('/input', (req, res) => {
@@ -69,5 +83,9 @@ app.get('/dashboard', function(req, res){
         res.redirect('/')
     }
 });
+
+function goToRegister(){
+    goToRegister = true;
+}
 
 app.listen(process.env.PORT || 3000)

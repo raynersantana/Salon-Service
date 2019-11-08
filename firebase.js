@@ -44,31 +44,32 @@ module.exports.SignInWithEmailAndPassword = (email, password) => {
            });
    }
 
-   module.exports.InputData = (name) => {
-     return firebase.database().ref('users').push({
-       name
-     })
-     .then(function() {
-      console.log('Synchronization succeeded');
-    })
-    .catch(function(error) {
-      console.log('Synchronization failed');
-    });
-   }
+module.exports.InputData = (name) => {
+  return firebase.database().ref('users').push({
+    name
+  })
+  .then(function() {
+    console.log('Synchronization succeeded');
+  })
+  .catch(function(error) {
+    console.log('Synchronization failed');
+  });
+}
 
-   module.exports.GetData = () => {
-     let data = []
-    return firebase.database().ref('users').once('value')
-    .then((snapshot) => {
-      
-      snapshot.forEach((childSnapshot)=>{
-        data.push({
-          id: childSnapshot.key,
-          ...childSnapshot.val() 
-        })
+module.exports.GetData = () => {
+  let data = []
+  return firebase.database().ref('users').once('value')
+  .then((snapshot) => {
+  
+    snapshot.forEach((childSnapshot)=>{
+      data.push({
+        id: childSnapshot.key,
+        ...childSnapshot.val() 
       })
-      console.log(data)
-      return data;
     })
-  }
+  console.log(data)
+  return data;
+  })
+}
+
 return module.exports
