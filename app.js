@@ -50,9 +50,13 @@ app.post('/createuser', (req, res) => {
    })
   })
 
+app.get('/register', (req, res) => {
+    res.render('register')
+})
+
 app.post('/login', (req, res) => {
     if(goToRegister){
-        res.redirect('/register')
+        res.redirect('register')
         goToRegister = false;
     }else{
         let getBody = req.body;
