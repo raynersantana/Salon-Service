@@ -8,6 +8,10 @@ const ejs = require('ejs');
 var goToRegister;
 let userLogged;
 
+function goToRegister(){
+    goToRegister = true;
+}
+
 var verifyLogin = () => {
     firebase.auth().onAuthStateChanged((user) => {
         if(user){
@@ -52,12 +56,13 @@ app.post('/createuser', (req, res) => {
 
 app.get('/register', (req, res) => {
     res.render('register')
+    goToRegister = false;
 })
 
 app.post('/login', (req, res) => {
+    goToRegister = true;
     if(goToRegister){
-        res.redirect('register')
-        goToRegister = false;
+        res.redirect('/register')
     }else{
         let getBody = req.body;
         Auth.SignInWithEmailAndPassword(getBody.email, getBody.password)
@@ -87,9 +92,5 @@ app.get('/dashboard', function(req, res){
         res.redirect('/')
     }
 });
-
-function goToRegister(){
-    goToRegister = true;
-}
 
 app.listen(process.env.PORT || 3000)

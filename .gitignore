@@ -1,2 +1,5 @@
 node_modules/
 .env
+firebase-debug.log
+firestore.indexes.json
+firestore.rules
