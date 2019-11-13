@@ -26,6 +26,7 @@ const app = express()
 app.set('view engine', 'ejs');
 var publicDir = require('path').join(__dirname,'/public');
 
+// Configurações básicas de layout e funcionamento
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(publicDir));
 app.use('/', express.static(__dirname + '/www')); // redirect root
@@ -35,6 +36,7 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/style', express.static(__dirname + '/style/')); // redirect CSS bootstrap
 app.use('/css', express.static(__dirname + '/vendor/css'));
 
+// Rota inicial
 app.get('/', (req, res) => {
     verifyLogin();
     if(userLogged){
@@ -44,36 +46,41 @@ app.get('/', (req, res) => {
     }
 })
 
+//Rota para criação de usuário
 app.post('/createuser', (req, res) => {
     Auth.SignUpWithEmailAndPassword(req.body.email,req.body.password).then((user) => {
        if(!user.err){
         res.redirect('/dashboard')
        }else{
-          return user.err
+          res.redirect('/')
        }
    })
-  })
+})
 
+//Rota para redirecionamento à página de criação de usuário
 app.get('/register', (req, res) => {
     res.render('register')
     goToRegister = false;
 })
 
+//Rota para efetuar login
 app.post('/login', (req, res) => {
-    goToRegister = true;
-    if(goToRegister){
-        res.redirect('/register')
-    }else{
-        let getBody = req.body;
-        Auth.SignInWithEmailAndPassword(getBody.email, getBody.password)
-        .then((login) => {
-            if(!login.err){
-                res.redirect('/dashboard')
-            }else{
-                res.redirect('/')
-            }
-        })
-    }
+    let getBody = req.body;
+    Auth.SignInWithEmailAndPassword(getBody.email, getBody.password)
+    .then((login) => {
+        if(!login.err){
+            res.redirect('/dashboard')
+        }else{
+            res.redirect('/register')
+        }
+    })
+})
+
+//Rota para efetuar o logout
+app.post('/exit', (req, res) => {
+    Auth.signOut().then(() => {
+        res.redirect('/')
+    })
 })
 
 app.post('/input', (req, res) => {

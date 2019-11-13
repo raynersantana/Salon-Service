@@ -30,19 +30,33 @@ module.exports.SignUpWithEmailAndPassword = (email, password) => {
 }
 
 module.exports.SignInWithEmailAndPassword = (email, password) => {
-    return firebase.auth().signInWithEmailAndPassword(email, password)
-           .catch(function(error) {
-             // Handle Errors here.
-             var errorCode = error.code;
-             var errorMessage = error.message;
-             if (errorCode === 'auth/wrong-password') {
-               return {err: 'Wrong password.'}
-             } else {
-               return {err: errorMessage}
-             }
-             return {err: error}
-           });
-   }
+  return firebase.auth().signInWithEmailAndPassword(email, password)
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    if (errorCode === 'auth/wrong-password') {
+      return {err: 'Wrong password.'}
+    } else {
+      return {err: errorMessage}
+    }
+    return {err: error}
+  });
+}
+
+module.exports.signOut = () => {
+  return firebase.auth().signOut().then(function() {
+    console.log('logged off succeeded');
+  }).catch(function(error) {
+    console.log('Logof failed');
+  })
+}
+
+firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}).catch(function(error) {
+  // An error happened.
+});
 
 module.exports.InputData = (name) => {
   return firebase.database().ref('users').push({

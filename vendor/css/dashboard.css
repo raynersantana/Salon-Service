@@ -1,0 +1,25 @@
+html,
+body {
+  height: 100%;
+}
+
+.block {
+    display: inline-block;
+    width: 250px;  
+    height: 200px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 28px;
+    font-size: 30px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    border: 1px solid green
+}
+  
+.block:hover {
+background-color: #ddd;
+color: black;
+}
