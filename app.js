@@ -91,6 +91,15 @@ app.post('/schedule', (req, res) => {
     res.render('schedule')
 })
 
+//Rota para criar um agendamento
+app.post('/createSchedule', (req, res) => {
+    console.log(req);
+    res.render('dashboard');
+})
+
+
+
+//remover
 app.post('/input', (req, res) => {
     let {name} = req.body
     Auth.InputData(name).then(() => {
