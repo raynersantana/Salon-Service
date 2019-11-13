@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const firebase = require('firebase');
 const Auth = require('./firebase.js');
 const ejs = require('ejs');
+const $ = require("jquery");
 var goToRegister;
 let userLogged;
 
@@ -35,6 +36,8 @@ app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redi
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use('/style', express.static(__dirname + '/style/')); // redirect CSS bootstrap
 app.use('/css', express.static(__dirname + '/vendor/css'));
+app.use('/images', express.static(__dirname + '/vendor/images'));
+app.use('/js', express.static(__dirname + '/vendor/js'));
 
 // Rota inicial
 app.get('/', (req, res) => {
@@ -81,6 +84,11 @@ app.post('/exit', (req, res) => {
     Auth.signOut().then(() => {
         res.redirect('/')
     })
+})
+
+//Rota para redirecionar para área de agendamento
+app.post('/schedule', (req, res) => {
+    res.render('schedule')
 })
 
 app.post('/input', (req, res) => {

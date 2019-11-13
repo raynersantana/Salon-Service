@@ -1,49 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NodeJs App</title>
-    <base href="/">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/dashboard.css">
-</head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
-    <div class="container">
-    <a class="navbar-brand" href="#">Salon Service</a>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-            <a class="nav-link" href="#">Início
-                <span class="sr-only">(current)</span>
-            </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Sobre</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Serviços</a>
-            </li>
-            <form action="/exit" method="POST">
-                <button class="btn btn-secondary" type="submit">Sair</button>
-            </form>
-        </ul>
-        </div>
-    </div>
-</nav>
-<body>
+<%- include('partials/header-dashboard') %>
     <div class="container h-100">
         <div class="row align-items-center h-100">
             <div class="col-6 mx-auto">
                 <div class="btn-group">
                     <button class="block">Meus agendamentos</button>
-                    <button class="block">Agendar!</button>
+                    <form action="/schedule" method="post">
+                        <button class="block">Agendar!</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</body>
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-</html>
+<%- include('partials/footer') %>

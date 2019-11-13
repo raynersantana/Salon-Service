@@ -1,0 +1,35 @@
+<%- include('partials/header-dashboard') %>
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <form>
+                <div class="row">
+                    <div class="col">
+                    <label for="date">Escolha uma data:</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="exemplo" name="date">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+            <form>
+                <br />
+                <div class="row">
+                    <div class="col">
+                    <label for="date">Escolha um horário:</label>
+                    <div class="input-group clockpicker">
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </span>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer-dashboard') %>

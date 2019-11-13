@@ -3,3 +3,5 @@ node_modules/
 firebase-debug.log
 firestore.indexes.json
 firestore.rules
+.firebase/
+database.rules.json

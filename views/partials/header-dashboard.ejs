@@ -7,7 +7,10 @@
     <title>NodeJs App</title>
     <base href="/">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/css/clockpicker.css">
+    <link rel="stylesheet" href="/css/standalone.css">
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
     <div class="container">
@@ -25,9 +28,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Serviços</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contatos</a>
-            </li>
+            <form action="/exit" method="POST">
+                <button class="btn btn-secondary" type="submit">Sair</button>
+            </form>
         </ul>
         </div>
     </div>
