@@ -9,6 +9,13 @@ const $ = require("jquery");
 var goToRegister;
 let userLogged;
 
+//Datas e horários
+var d = new Date();
+var n = d.toLocaleTimeString();
+var systemHour = n.substring(0,2);
+var systemMin = n.substring(3,5);
+var systemDay = d.getDate();
+
 function goToRegister(){
     goToRegister = true;
 }
@@ -93,11 +100,37 @@ app.post('/schedule', (req, res) => {
 
 //Rota para criar um agendamento
 app.post('/createSchedule', (req, res) => {
-    console.log(req);
-    res.render('dashboard');
+    let getBody = req.body;    
+    let clientHour = getBody.hour.substring(0,2);
+    let clientMin = getBody.hour.substring(3,5);
+    let clientDay = getBody.date.substring(0,2);
+    let clientMonth = getBody.date.substring(3,5);
+    let clientYear = getBody.date.substring(6,10);
+    let pathToGlory = 'schedules/' + clientDay + '-' + clientMonth + '-' + clientYear + '/' + clientHour;
+
+    console.log('Cliente escolheu: ' + clientHour + ' horas e' + clientMin + ' minutos') 
+    console.log('Dia: ' + clientDay + ' Mês ' + clientMonth);
+    
+    if(clientDay != systemDay){
+        let ref = firebase.database().ref('' + pathToGlory);
+        ref.once("value")
+        .then(function(snapshot) {
+            let key = snapshot.key;
+            console.log('Key: ' + key);
+            res.render('dashboard');
+        })
+        // Auth.GetSchedules(pathToGlory).then((key) => {
+        //     console.log(key);
+        // })
+    }else if(clientHour > systemHour && clientHour - 2 >= systemHour) {
+        console.log(pathToGlory);
+        // Auth.InputData(name).then(() => {
+        //     res.render('dashboard')
+        // })
+    }else{
+        console.log('deu merda')
+    }
 })
-
-
 
 //remover
 app.post('/input', (req, res) => {
@@ -109,9 +142,7 @@ app.post('/input', (req, res) => {
 
 app.get('/dashboard', function(req, res){
     if(userLogged){
-        Auth.GetData().then((data) => {
-            res.render('dashboard', {data});
-        })
+            res.render('dashboard');
     }else{
         res.redirect('/')
     }

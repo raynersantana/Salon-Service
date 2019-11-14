@@ -70,19 +70,18 @@ module.exports.InputData = (name) => {
   });
 }
 
-module.exports.GetData = () => {
+module.exports.GetSchedules = (pathToGlory) => {
   let data = []
-  return firebase.database().ref('users').once('value')
-  .then((snapshot) => {
-  
-    snapshot.forEach((childSnapshot)=>{
-      data.push({
-        id: childSnapshot.key,
-        ...childSnapshot.val() 
-      })
-    })
-  console.log(data)
-  return data;
+  let ref = firebase.database().ref('' + pathToGlory);
+  ref.once("value")
+  .then(function(snapshot) {
+    let key = snapshot.key;
+    console.log('foi')
+
+    return key;
+  })
+  .catch(function(error) {
+    console.log('deu merda again')
   })
 }
 
