@@ -16,7 +16,8 @@
     "express": "^4.17.1",
     "firebase": "^7.2.3",
     "jquery": "^3.4.1",
-    "js-datepicker": "^5.1.1"
+    "js-datepicker": "^5.1.1",
+    "twilio": "^3.37.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

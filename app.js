@@ -6,9 +6,18 @@ const firebase = require('firebase');
 const Auth = require('./firebase.js');
 const ejs = require('ejs');
 const $ = require("jquery");
+
+//sms
+const accountSid = 'ACf5b0a48acab6f23cbb16a0c9f29166e8';
+const authToken = 'e819ab7d0575076b3b30df8daa2fdcb4';
+const client = require('twilio')(accountSid, authToken);
+
 var goToRegister;
 var userLogged;
 var userId;
+
+//Infos do usuário
+var name, phone, email;
 
 //Datas e horários
 var d = new Date();
@@ -26,6 +35,25 @@ var verifyLogin = () => {
         if(user){
             userLogged = user
             userId = user.id
+            firebase.database().ref(`users/${user.uid}`).once("value", snapshot => {
+                if (snapshot.exists()){
+                    const userData = snapshot.val();
+                    console.log("Existe!", userData)
+                    name = userData.name;
+                    email = userData.email;
+                    phone = userData.phone;
+                 }else{
+                     console.log('Usuário enviado ao db')
+                        firebase.database().ref('users').child(user.uid).set({
+                            name: name,
+                            phone: phone,
+                            email: email
+                    });
+                 }
+             })
+             .catch(function(error) {
+                 console.log('Erro no verifyLogin' + error);
+             })
         } else {
             userLogged = null
             userId = null
@@ -63,11 +91,17 @@ app.get('/', (req, res) => {
 app.post('/createuser', (req, res) => {
     Auth.SignUpWithEmailAndPassword(req.body.email,req.body.password).then((user) => {
        if(!user.err){
+        name = req.body.name;
+        phone = req.body.phone;
+        email = req.body.email;
+        console.log(req.body);
         res.redirect('/dashboard')
        }else{
           res.redirect('/')
        }
-   })
+   }).catch(function(error) {
+    console.log('error ao criar usuário ' + error);
+    })
 })
 
 //Rota para redirecionamento à página de criação de usuário
@@ -120,9 +154,23 @@ app.post('/createSchedule', (req, res) => {
         let pathToGlory = 'schedules/' + clientDay + '-' + clientMonth + '-' + clientYear + '/' + clientHour;
         
         if(clientDay != systemDay){
-            firebase.database().ref('schedules/' + clientDay + '-' + clientMonth + '-' + clientYear + '/' + clientHour).push({
-                user: userLogged.uid
+            firebase.database().ref('schedules/' + clientDay + '-' + clientMonth + '-' + clientYear + '/' + clientHour).child(userLogged.uid).set({
+                user: userLogged.uid,
+                name: name,
+                phone: phone,
+                email: email
             })
+            //Iniciando envio do sms
+            client.messages
+                .create({
+                    body: `Olá ${name}, está é uma mensagem automática do Salon Service. Apenas para confirmar que o agendamento foi um sucesso ;)`,
+                    from: '+12018174032',
+                    to: `+55${phone}`
+                })
+                .then(message => console.log(message.sid))
+                .catch(function(error) {
+                    console.log('Erro ao enviar o sms' + error);
+                })
             res.redirect('/dashboard');
         }else{
             console.log('deu merda')
