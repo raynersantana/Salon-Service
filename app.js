@@ -144,17 +144,18 @@ app.get('/schedule', (req, res) => {
 app.post('/createSchedule', (req, res) => {
     verifyLogin();
     if(userLogged){
-        console.log(userLogged.uid)    
+        console.log('Código do usuário: ' + userLogged.uid)
         let getBody = req.body;    
         let clientHour = getBody.hour.substring(0,2);
         let clientMin = getBody.hour.substring(3,5);
         let clientDay = getBody.date.substring(0,2);
         let clientMonth = getBody.date.substring(3,5);
         let clientYear = getBody.date.substring(6,10);
-        let pathToGlory = 'schedules/' + clientDay + '-' + clientMonth + '-' + clientYear + '/' + clientHour;
+        // let pathToGlory = 'schedules/' + clientDay + '-' + clientMonth + '-' + clientYear + '/' + clientHour;
         
         if(clientDay != systemDay){
-            firebase.database().ref('schedules/' + clientDay + '-' + clientMonth + '-' + clientYear + '/' + clientHour).child(userLogged.uid).set({
+            console.log('Dia escolhido diferente do sistema!')
+            firebase.database().ref('schedules/').child(userLogged.uid).child(clientDay + '-' + clientMonth + '-' + clientYear).child(clientHour).set({
                 user: userLogged.uid,
                 name: name,
                 phone: phone,
@@ -182,7 +183,13 @@ app.post('/createSchedule', (req, res) => {
 
 //Rota para direcionar à página de consulta dos agendamentos
 app.get('/mySchedules', function(req, res){
-    res.render('mySchedules');
+    firebase.database().ref(`schedules/${userLogged.uid}`).once("value", snapshot => {
+        if (snapshot.exists()){
+            var scheduleData = snapshot.val();
+            console.log("Existe!", scheduleData)
+        }
+    })
+res.render('mySchedules', {item: JSON.stringify(scheduleData)});
 })
 
 
