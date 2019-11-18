@@ -187,11 +187,10 @@ app.get('/mySchedules', function(req, res){
         if (snapshot.exists()){
             var scheduleData = snapshot.val();
             console.log("Existe!", scheduleData)
+            res.render('mySchedules', {item: scheduleData});
         }
     })
-res.render('mySchedules', {item: JSON.stringify(scheduleData)});
 })
-
 
 //remover
 app.post('/input', (req, res) => {
