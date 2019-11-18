@@ -23,6 +23,7 @@ body {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+  background-color: #f8f9fa!important;
 }
 .form-signin .checkbox {
   font-weight: 400;
@@ -59,4 +60,7 @@ body {
 }
 .btn-block {
   margin-bottom: 5px;
+}
+.navbar-nav .nav-link {
+  font-size: 19px;
 }

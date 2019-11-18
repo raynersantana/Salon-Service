@@ -1,0 +1,8 @@
+.col-6{
+    background-color: #f8f9fa!important;
+  }
+  @media (min-width: 1200px){
+    .container {
+      max-width: 1380px;
+    }
+}

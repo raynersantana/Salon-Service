@@ -1,0 +1,49 @@
+<%- include('partials/header-mySchedules') %>
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <div class="btn-group">
+                <div class="container mt-3">
+                    <h2>Meus agendamentos</h2>
+                    <p>Abaixo está a lista de todos os agendamentos que você já fez conosco ;)</p>  
+                    <!-- <input class="form-control" id="myInput" type="text" placeholder="Search.."> -->
+                    <!-- <br> -->
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                        </tr>
+                        <tr>
+                            <td>Mary</td>
+                            <td>Moe</td>
+                            <td>mary@mail.com</td>
+                        </tr>
+                        <tr>
+                            <td>July</td>
+                            <td>Dooley</td>
+                            <td>july@greatstuff.com</td>
+                        </tr>
+                        <tr>
+                            <td>Anja</td>
+                            <td>Ravendale</td>
+                            <td>a_r@test.com</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    
+                    <!-- <p>Note that we start the search in tbody, to prevent filtering the table headers.</p> -->
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer') %>

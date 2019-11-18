@@ -180,6 +180,10 @@ app.post('/createSchedule', (req, res) => {
     }
 })
 
+//Rota para direcionar à página de consulta dos agendamentos
+app.get('/mySchedules', function(req, res){
+    res.render('mySchedules');
+})
 
 
 //remover
