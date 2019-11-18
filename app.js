@@ -124,7 +124,7 @@ app.post('/login', (req, res) => {
 })
 
 //Rota para efetuar o logout
-app.post('/exit', (req, res) => {
+app.get('/exit', (req, res) => {
     Auth.signOut().then(() => {
         res.redirect('/')
     })
