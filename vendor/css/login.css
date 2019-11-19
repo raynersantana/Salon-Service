@@ -23,8 +23,10 @@ body {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
-  background-color: #f8f9fa!important;
+  background-color: #2b1d0e!important;
   opacity: 90%;
+  color: #ffffff;
+  height: 56%;
 }
 .form-signin .checkbox {
   font-weight: 400;
@@ -67,4 +69,8 @@ body {
 }
 .bg-light {
   opacity: 90%;
+}
+.fixed-top{
+  height: 8%;
+  top: 0px;
 }
