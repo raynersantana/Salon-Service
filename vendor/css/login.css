@@ -24,6 +24,7 @@ body {
   padding: 15px;
   margin: 0 auto;
   background-color: #f8f9fa!important;
+  opacity: 90%;
 }
 .form-signin .checkbox {
   font-weight: 400;
