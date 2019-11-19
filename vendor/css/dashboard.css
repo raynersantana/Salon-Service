@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  opacity: 96%;
 }
 
 .block {
@@ -28,15 +29,18 @@ color: black;
   border-radius: 10%;
 }
 .bg-light {
-  opacity: 90%;
+  opacity: 97%;
 }
 .form_dash {
   background-color: #2b1d0e;
   padding: 10px;
-  opacity: 90%;
+  opacity: 95%;
   color: #ffffff;
 }
 .fixed-top{
   height: 8%;
   top: 0px;
+}
+.jumbotron {
+  margin-top: 7%;
 }

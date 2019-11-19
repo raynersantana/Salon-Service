@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NodeJs App</title>
+    <base href="/">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/css/clockpicker.css">
+    <link rel="stylesheet" href="/css/standalone.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        body{
+            background-image: url("images/barber-shop.jpg");
+            /* Full height */
+            height: 100%; 
+
+            /*opacity*/
+            /* opacity: 0.5; */
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .col-6 {
+            flex: 0 0 73%;
+            max-width: 70%;
+            background-color: white;
+            padding: 5px;
+            padding-left: 20px;
+            padding-right: 3rem;
+            border-radius: 10px;
+            left: 10rem;
+        }
+        .mb-4, .my-4 {
+            background-color: white;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+            border-radius: 10px;
+            opacity: 97%;
+        }
+        .mb-5, .my-5 {
+            margin-bottom: 1rem!important;
+        }
+    </style>
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+    <div class="container">
+        <a href="/dashboard"><img src="images/logo.svg" height="90" width="250" alt="logo" /></a>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="#">Início
+                <span class="sr-only">(current)</span>
+            </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">Sobre</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/services">Serviços</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contato</a>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/exit">Sair</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+</nav>
+<!--Section: Contact v.2-->
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+    <!--Section: Contact v.2-->
+<section class="mb-4">
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Fale conosco</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Você tem alguma pergunta? Por favor, não hesite em falar conosco. Dúvidas, reclamações, sugestões e elogíos, entre em contato ;) </p>
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-9 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="name" name="name" class="form-control">
+                            <label for="name" class="">Nome</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="email" name="email" class="form-control">
+                            <label for="email" class="">E-mail</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <input type="text" id="subject" name="subject" class="form-control">
+                            <label for="subject" class="">Assunto</label>
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                            <label for="message">Mensagem</label>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Grid row-->
+
+            </form>
+
+            <div class="text-center text-md-left">
+                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Enviar</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-3 text-center">
+            <ul class="list-unstyled mb-0">
+                <li><i class="fa fa-phone mt-4 fa-2x"></i>
+                    <p>(21) 2453-6679</p>
+                    <p>(21) 2453-7966</p>
+                </li>
+                <li><i class="fa fa-whatsapp mt-4 fa-2x"></i>
+                <p>(21) 9 9678-0044</p>
+                </li>
+                <li><i class="fa fa-envelope mt-4 fa-2x"></i>
+                    <p>contact@salon.com.br</p>
+                </li>
+                <li><i class="fa fa-location-arrow fa-2x"></i>
+                    <p>Estr. Dr. Plínio Casado, 1466 - Centro, Nova Iguaçu - RJ</p>
+                </li>
+            </ul>
+        </div>
+        <!--Grid column-->
+
+    </div>
+
+</section>
+</div>
+    <!--Section: Contact v.2-->
+</div>
+    <!--Section: Contact v.2-->
+<%- include('partials/footer-dashboard') %>

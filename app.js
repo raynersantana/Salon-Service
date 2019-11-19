@@ -192,6 +192,22 @@ app.get('/mySchedules', function(req, res){
     })
 })
 
+//Estáticos
+//About
+app.get('/about', function(req, res){
+    res.render('about');
+});
+
+//Services
+app.get('/services', function(req, res){
+    res.render('services');
+});
+
+//Contact
+app.get('/contact', function(req, res){
+    res.render('contact');
+});
+
 //remover
 app.post('/input', (req, res) => {
     let {name} = req.body
