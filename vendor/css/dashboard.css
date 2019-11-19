@@ -27,3 +27,6 @@ color: black;
   background-color: #4CAF50;
   border-radius: 10%;
 }
+.bg-light {
+  opacity: 90%;
+}

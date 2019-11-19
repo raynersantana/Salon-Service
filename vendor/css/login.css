@@ -64,3 +64,6 @@ body {
 .navbar-nav .nav-link {
   font-size: 19px;
 }
+.bg-light {
+  opacity: 90%;
+}
