@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/css/clockpicker.css">
     <link rel="stylesheet" href="/css/standalone.css">
-    <link rel="stylesheet" href="/css/mySchedules.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style>
         body{
             background-image: url("images/barber-shop.jpg");
@@ -24,6 +24,27 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+        }
+        .col-6 {
+            flex: 0 0 73%;
+            max-width: 70%;
+            background-color: white;
+            padding: 5px;
+            padding-left: 20px;
+            padding-right: 3rem;
+            border-radius: 10px;
+            left: 10rem;
+        }
+        .mb-4, .my-4 {
+            background-color: white;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+            border-radius: 10px;
+            opacity: 97%;
+        }
+        .mb-5, .my-5 {
+            margin-bottom: 1rem!important;
         }
     </style>
 </head>
@@ -44,8 +65,8 @@
                 <a class="nav-link" href="/services">Serviços</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/contact">Contato</a>
-            </li>
+                    <a class="nav-link" href="/contact">Contato</a>
+                </li>
             <li class="nav-item">
                 <a class="nav-link" href="/exit">Sair</a>
             </li>
@@ -53,3 +74,12 @@
         </div>
     </div>
 </nav>
+<div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="col-6 mx-auto">
+                <h1>Desculpe, não foi possível agendar nessa data e horário!</h1>
+                <a href="/dashboard">Clique aqui para recomeçar</a>
+            </div>
+        </div>
+</div>
+<%- include('partials/footer-dashboard') %>

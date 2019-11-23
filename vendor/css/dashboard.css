@@ -25,8 +25,9 @@ background-color: #ddd;
 color: black;
 }
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  background-color: #4CAF50;
+  background-color: #2b1d0e;
   border-radius: 10%;
+  color: white;
 }
 .bg-light {
   opacity: 97%;

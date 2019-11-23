@@ -19,29 +19,44 @@
                         </thead>
                         <tbody id="myTable">
                         <tr>
-                            <td>1</td>
-                            <td>20/11/2019</td>
-                            <td>14:00</td>
+                            <% if(JSON.stringify(item.first)) { %>
+                                <td>1</td>
+                                <td><%- JSON.stringify(item.first.date).replace(/"/g, '') %></td>
+                                <td><%- JSON.stringify(item.first.hour).replace(/"/g, '') %></td>
+                            <% } %>
+                         </tr>
+                         <tr>
+                            <% if(JSON.stringify(item.second)) { %>
+                                <td>2</td>
+                                <td><%- JSON.stringify(item.second.date).replace(/"/g, '') %></td>
+                                <td><%- JSON.stringify(item.second.hour).replace(/"/g, '') %></td>
+                            <% } %>
                         </tr>
                         <tr>
-                            <td>2</td>
-                            <td>23/11/2019</td>
-                            <td>17:00</td>
+                            <% if(JSON.stringify(item.three)) { %>
+                                <td>3</td>
+                                <td><%- JSON.stringify(item.three.date).replace(/"/g, '') %></td>
+                                <td><%- JSON.stringify(item.three.hour).replace(/"/g, '') %></td>
+                            <% } %>
                         </tr>
                         <tr>
-                            <td>3</td>
-                            <td>27/11/2019</td>
-                            <td>19:00</td>
+                            <% if(JSON.stringify(item.four)) { %>
+                                <td>4</td>
+                                <td><%- JSON.stringify(item.four.date).replace(/"/g, '') %></td>
+                                <td><%- JSON.stringify(item.four.hour).replace(/"/g, '') %></td>
+                            <% } %>
                         </tr>
                         <tr>
-                            <td>4</td>
-                            <td>29/11/2019</td>
-                            <td>21:30</td>
+                            <% if(JSON.stringify(item.five)) { %>
+                                <td>5</td>
+                                <td><%- JSON.stringify(item.five.date).replace(/"/g, '') %></td>
+                                <td><%- JSON.stringify(item.five.hour).replace(/"/g, '') %></td>
+                            <% } %>
                         </tr>
                         </tbody>
                     </table>
                     
-                    <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
+                    <p>Em caso de dúvida em relação a sua página de agendamentos, entre em <a href="/contact">contato</a> conosco</p>
                     </div>
                 </div>
             </div>

@@ -36,7 +36,8 @@ module.exports.SignInWithEmailAndPassword = (email, password) => {
     var errorCode = error.code;
     var errorMessage = error.message;
     if (errorCode === 'auth/wrong-password') {
-      return {err: 'Wrong password.'}
+      console.log('Wrong Pass')
+      return {err: 'Senha errada. Por favor, tente novamente.'}
     } else {
       return {err: errorMessage}
     }

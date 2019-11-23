@@ -15,6 +15,8 @@ const client = require('twilio')(accountSid, authToken);
 var goToRegister;
 var userLogged;
 var userId;
+var counter = "0";
+var c = ["first", "second", "three", "four", "five"];
 
 //Infos do usuário
 var name, phone, email;
@@ -153,14 +155,20 @@ app.post('/createSchedule', (req, res) => {
         let clientYear = getBody.date.substring(6,10);
         // let pathToGlory = 'schedules/' + clientDay + '-' + clientMonth + '-' + clientYear + '/' + clientHour;
         
-        if(clientDay != systemDay){
+        if(clientDay != systemDay && (parseInt(clientHour, 10) >= 8 &&  parseInt(clientHour, 10) <= 18)){
             console.log('Dia escolhido diferente do sistema!')
-            firebase.database().ref('schedules/').child(userLogged.uid).child(clientDay + '-' + clientMonth + '-' + clientYear).child(clientHour).set({
+            firebase.database().ref('schedules/').child(userLogged.uid).child(c[counter]).set({
                 user: userLogged.uid,
                 name: name,
                 phone: phone,
-                email: email
+                email: email,
+                date: getBody.date,
+                hour: getBody.hour
             })
+            console.log("Contador antes de somar: " + counter);
+            counter++;
+            console.log("Contador depois de somar: " + counter);
+            
             //Iniciando envio do sms
             client.messages
                 .create({
@@ -175,6 +183,7 @@ app.post('/createSchedule', (req, res) => {
             res.redirect('/dashboard');
         }else{
             console.log('deu merda')
+            res.redirect('/error');
         }
     }else{
         console.log('não logado')
@@ -186,7 +195,7 @@ app.get('/mySchedules', function(req, res){
     firebase.database().ref(`schedules/${userLogged.uid}`).once("value", snapshot => {
         if (snapshot.exists()){
             var scheduleData = snapshot.val();
-            console.log("Existe!", scheduleData)
+            console.log(scheduleData);
             res.render('mySchedules', {item: scheduleData});
         }
     })
@@ -214,6 +223,11 @@ app.post('/input', (req, res) => {
     Auth.InputData(name).then(() => {
         res.render('dashboard')
     })
+})
+
+//error
+app.get('/error', (req, res) => {
+    res.render('error');
 })
 
 app.get('/dashboard', function(req, res){
